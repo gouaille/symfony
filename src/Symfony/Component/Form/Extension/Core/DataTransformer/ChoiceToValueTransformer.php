@@ -34,8 +34,8 @@ class ChoiceToValueTransformer implements DataTransformerInterface
 
     public function reverseTransform($value)
     {
-        if (null !== $value && !is_string($value)) {
-            throw new TransformationFailedException('Expected a string or null.');
+        if (null !== $value && !is_string($value) && !is_int($value)) {
+            throw new TransformationFailedException('Expected a string, an integer or null.');
         }
 
         $choices = $this->choiceList->getChoicesForValues(array((string) $value));
